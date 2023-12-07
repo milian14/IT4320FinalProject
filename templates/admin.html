@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="content-block">
+        <div id="reservation">
+            <h2 class="block-title">{% block title %} Reserve Your Seat {% endblock %}</h2>
+            {% if conf_text %} 
+                <p>{{ conf_text | safe }}</p>
+            {% endif %}
+            {% if seating %} 
+                <div class="seating-info">
+                    <h5>Seating Chart (X = Reserved Seat, O = Available Seat)</h5>
+                    <div class="seat-chart">
+                        {% for row in seating %}
+                            <div class="seat-row">
+                                {% for seat in row %}
+                                    <div class="seat {{ 'reserved' if seat == 'X' else 'available' }}">{{ seat }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+            </div>
+            <h3>Total Sales: {{ sales }}</h3>
+        </div>
+        {% endif %}
+        
+        <form method="post">
+            <label for="username">Username: </label>
+            <input type="text" name="username" id="username">
+            <label for="password">Password: </label>
+            <input type="text" name="password" id="password">
+            <button type="submit">LOGIN</button>
+        </form>
+    </div>
+    </div>
+    
+{% endblock %}

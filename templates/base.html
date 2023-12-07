@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IT4320 Final</title>
+    <style>
+        body {
+            background-color: lightgrey;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #38726c;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #F4D03F ; 
+            font-size: 30px;
+            font-weight: bold; 
+            margin: 0 10px; 
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #d9a76e; 
+        }
+
+        .message {
+            padding: 20px;
+            margin: 5px;
+            color: red;
+            background-color: pink;
+        }
+
+        .block-title, h1 {
+            font-size: 24px; 
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        select {
+            background-color: #85929E;
+            color: black;
+            padding: 1px;
+            text-align: left;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 1px;
+        }
+
+        .seating-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .seat-chart {
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .seat-row {
+            display: flex;
+        }
+        
+        .seat {
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            margin: 2px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .seat.reserved {
+            background-color: #f44336; /* Red for reserved seats */
+            color: white;
+            cursor: default;
+        }
+        
+        .seat.available {
+            background-color: #38726c; /* Green for available seats */
+            color: white;
+        }
+        
+        .seat.available:hover {
+            background-color: #81c784; /* Lighter green on hover */
+        }
+
+        footer {
+            background-color: #38726c;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        main {
+            border: solid #38726c;
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #38726c;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        form {
+            margin: 10px;
+            padding: 20px;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+
+        select {
+            margin-right: 10px;
+            padding: 5px 10px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 15px;
+            background-color: #38726c;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #1e3d3a;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        hr {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('admin') }}">Admin</a>
+        <a href="{{ url_for('reservations') }}">Reservations</a>
+    </nav>
+    <hr>
+    <div class="content">
+        {% for message in get_flashed_messages() %}
+            <div class="message">{{ message }}</div>
+        {% endfor %}
+
+        {% block content %} {% endblock %}
+    </div>
+    <footer>
+        <!-- Footer content here -->
+    </footer>
+</body>
+</html>

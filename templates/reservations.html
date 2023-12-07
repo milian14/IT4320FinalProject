@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content-block">
+    <div id="reservation">
+        <h2 class="block-title">{% block title %}Reserve Your Seat{% endblock %}</h2>
+        {{ conf_text_block(conf_text) }}
+        {{ seating_chart(seating) }}
+        {{ reservation_form() }}
+    </div>
+</div>
+{% endblock %}
+
+{% macro conf_text_block(conf_text) %}
+    {% if conf_text %} 
+        <p>{{ conf_text | safe }}</p>
+    {% endif %}
+{% endmacro %}
+
+{% macro seating_chart(seating) %}
+    {% if seating %} 
+        <div class="seating-info">
+            <h5>Seating Chart (X = Reserved Seat, O = Available Seat)</h5>
+            <div class="seat-chart">
+                {% for row in seating %}
+                    <div class="seat-row">
+                        {% for seat in row %}
+                            <div class="seat {{ 'reserved' if seat == 'X' else 'available' }}">{{ seat }}</div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endmacro %}
+
+{% macro reservation_form() %}
+    <form method="post">
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" id="first_name">
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" id="last_name">
+        <br>
+        <label for="row">Choose a row:</label>
+        <select id="row" name="row">{{ options_for_rows() }}</select>
+        <label for="seat">Choose a seat:</label>
+        <select id="seat" name="seat">{{ options_for_seats() }}</select>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+{% endmacro %}
+
+{% macro options_for_rows() %}
+    <option value="">Choose a Row</option>
+    {% for i in range(12) %}
+    <option value="{{ i }}">{{ i + 1 }}</option>
+    {% endfor %}
+{% endmacro %}
+
+{% macro options_for_seats() %}
+    <option value="">Choose a Seat</option>
+    {% for i in range(4) %}
+    <option value="{{ i }}">{{ i + 1 }}</option>
+    {% endfor %}
+{% endmacro %}

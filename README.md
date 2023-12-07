@@ -1,4 +1,4 @@
-# IT4320FinalProject
+# Final_Project_4320
 
 Requirements
 Create a menu-driven reservation system using Flask Python, or another language with the ability to load and save reservations data to/from a file. The application should also allow an administrator to login to the admin portal where they can view the bus seating chart and see the total sales. The bus can seat up to 48 people, 12 rows of 4 seats each. You can use your project 3a as a template for this project.
@@ -21,14 +21,3 @@ G. Calculate and get the total sales for the flight when the user successfully l
 H. Create and print a reservation code for the user when the user successfully makes a reservation
 I. Save the reservation in formation the reservation.txt (first name, seat row, seat column, e_ticket number)
 J. Each page should have a link to the main option page.
-Cost Matrix: You will need pricing a matrix to calculate sales for the flight. The following python function will create a 12 x 4 cost matrix which represents the cost of each seat on the flight. You should use this code in your project.
-
-'''
-Function to generate cost matrix for flights
-Input: none
-Output: Returns a 12 x 4 matrix of prices
-'''
-def get_cost_matrix():
-    cost_matrix = [[100, 75, 50, 100] for row in range(12)]
-    return cost_matrix
-Note: If you develop in a language other than python you will have to implement the same same pricing scheme.
